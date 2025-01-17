@@ -2,7 +2,7 @@
 { S7_Optimized_Access := 'TRUE' }
 VERSION : 0.1
 
-BEGIN
+BEGINs
 	
 	
 	//A function of RTD1, RTD2, and RTD3 which the result gives the temperature. the following function needs modification
