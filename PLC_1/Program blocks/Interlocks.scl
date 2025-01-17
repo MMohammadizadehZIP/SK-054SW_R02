@@ -27,7 +27,6 @@ BEGIN
 	    
 	    
 	    
-	    
 	    //Permissive (During the process)
 	    IF  //"Capacitive_HLS"
 	        //AND "Var".temperature_is_ok

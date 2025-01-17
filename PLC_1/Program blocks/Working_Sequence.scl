@@ -4,14 +4,17 @@ VERSION : 0.1
 
 BEGIN
 	
-	        (* Explanation of variables and states
-	            Working seq:
-	                 0  --> Idle
-	                10 --> Loading
-	                20 --> Emergency
-	                25 --> Pause
-	                
-	        *)
+	(* Explanation of variables and states
+	    Working seq:
+	         0  --> Idle
+	        10 --> Loading
+	        11 --> Initial Low Flow
+	        12 --> High Flow
+	        13 --> Final Low Flow
+	        20 --> Emergency
+	        25 --> Pause
+	        
+	*)
 	
 	
 	//flags
@@ -29,296 +32,296 @@ BEGIN
 	"Rising_edge_next"(CLK:="NEXT_Button");
 	"Rising_edge_prev"(CLK:="PREV_Button");
 	
-	"Var".quantity_of_LH_flow_intitial := REAL_TO_INT("Var".quantity_of_LH_flow_percentage_initial * "Var".set_quantity/100);
-	"Var".quantity_of_HL_flow_final := REAL_TO_INT("Var".quantity_of_HL_flow_percentage_final * "Var".set_quantity/100);
+	"Var".quantity_of_LH_flow_intitial := REAL_TO_INT("Var".quantity_of_LH_flow_percentage_initial * "Var".set_quantity / 100);
+	"Var".quantity_of_HL_flow_final := REAL_TO_INT("Var".quantity_of_HL_flow_percentage_final * "Var".set_quantity / 100);
 	
 	
-	        
-	        //Ready to load conditions (Interlocks + Quantity set + In loading )
-	        IF  
-	            "Var".In_loading  
-	            AND "Var".set_quantity > 0   
-	            AND "Var".Interlocks_idle
-	        THEN
-	            "Var".Ready_to_Load := 1;
-	        ELSE
-	            "Var".Ready_to_Load := 0;
-	        END_IF;
-	        
-	      
-	        //IDLE state
-	        IF "Var".working_seq = 0  THEN
-	            
-	            
-	            
-	            "ESD_solenoid_valve" := 0;
-	            "Var".flow_control_valve_output := 0;
-	            "To_contactor" := 0;
-	            
-	            // Go to emergency
-	            IF NOT "Var".emergency_state THEN
-	                
-	                "Var".idle_flag := 0;
-	                "Var".working_seq := 20;
-	            END_IF;
-	            
-	            
-	            
-	            // Go to Loading    
-	            IF      "Var".Ready_to_Load
-	                AND "Var".interlocks_loading
-	                AND "Var".In_loading
-	                AND "Pendant_START_Button" 
-	            THEN
-	                
-	                "Var".working_seq := 10;
-	                
-	                
-	            END_IF;
-	            
-	            
-	            // Go to Drain
-	            IF      "Var".interlocks_loading
-	                AND "Var".In_Draining
-	                AND "Pendant_START_Button"
-	                
-	            THEN
-	                
-	                "Var".working_seq := 15;
-	                
-	            END_IF;
-	            
-	        END_IF;
-	        
-	        // Loading state
-	        IF "Var".working_seq = 10 THEN
-	            
-	          
-	            "To_contactor" := 1;
-	            
-	            "Flowmeter_pressure_timer".TON(IN := "Var".loading_flag,
-	                                           PT := T#3000ms);
-	            
-	            //After 3 seconds open the valves (to reach to a certain pressure)
-	            IF "Flowmeter_pressure_timer".Q THEN
-	                
-	                "Var".working_seq := 11;
-	                
-	            END_IF;
-	            
-	            
-	        END_IF;
-	        
-	        //Low flow state, Initial
-	        IF "Var".working_seq = 11 THEN
-	            
-	            //"To_contactor" := 1;
-	            "Var".flow_control_valve_output := "Var".FCV_low_flow_signal;  // go to the value of low flow
-	            "ESD_solenoid_valve" := 1;
-	            
-	            
-	            // Going to High flow after loading of 50 kg, But not at the end of loading(in case of pause)
-	            IF "Var".recent_loaded_quantity > "Var".quantity_of_LH_flow_intitial AND
-	                "Var".remained_quantity>"Var".quantity_of_HL_flow_final
-	            THEN
-	                
-	                "Var".working_seq := 12;
-	                
-	            END_IF;
-	 
-	        END_IF;
-	        
-	        //High flow state, Loading
-	        IF "Var".working_seq = 12 THEN
-	            
-	            //Outputs in this state
-	            //"To_contactor" := 1;
-	            //"ESD_solenoid_valve" := 1;
-	            "Var".flow_control_valve_output := "Var".FCV_high_flow_signal;
-	            
-	            
-	            
-	            // Going to final low flow, final
-	            IF "Var".remained_quantity <= "Var".quantity_of_HL_flow_final  THEN
-	                
-	                "Var".working_seq := 13;
-	                
-	            END_IF;
-	            
 	
-	            
-	        END_IF;
+	//Ready to load conditions (Interlocks + Quantity set + In loading )
+	IF
+	    "Var".In_loading
+	    AND "Var".set_quantity > 0
+	    AND "Var".Interlocks_idle
+	THEN
+	    "Var".Ready_to_Load := 1;
+	ELSE
+	    "Var".Ready_to_Load := 0;
+	END_IF;
+	
+	
+	//IDLE state
+	IF "Var".working_seq = 0 THEN
+	    
+	    
+	    
+	    "ESD_solenoid_valve" := 0;
+	    "Var".flow_control_valve_output := 0;
+	    "To_contactor" := 0;
+	    
+	    // Go to emergency
+	    IF NOT "Var".emergency_state THEN
 	        
-	        //Low flow state, final
-	        IF "Var".working_seq = 13 THEN
-	            
-	         
-	            "Var".flow_control_valve_output := "Var".FCV_low_flow_signal;  // go to the value of low flow
-	            //"ESD_solenoid_valve" := 1;
-	            //"To_contactor" := 1;
-	            
-	            
-	            //condition for going out of this state are outside (like quantity reached, pause, emergency)
-	            
-	        END_IF;
+	        "Var".idle_flag := 0;
+	        "Var".working_seq := 20;
+	    END_IF;
+	    
+	    
+	    
+	    // Go to Loading    
+	    IF "Var".Ready_to_Load
+	        AND "Var".interlocks_loading
+	        AND "Var".In_loading
+	        AND "Pendant_START_Button"
+	    THEN
 	        
-	        //Drain state
-	        IF "Var".working_seq = 15 THEN
-	            
-	            
-	                
-	                // Outputs
-	                "To_contactor" := 0;
-	                "ESD_solenoid_valve" := 1;
-	                "Var".flow_control_valve_output := "Var".FCV_high_flow_signal;
-	                
-	                
-	                "Var".Elapsed_drain_time := TIME_TO_INT(IN := "IEC_Timer_0_DB_3".ET);
-	                "Var".Elapsed_drain_time := ROUND("Var".Elapsed_drain_time / 1000);
-	                
-	                "IEC_Timer_0_DB_3".TON(IN := "Var".In_Draining,
-	                                       PT := "Var".drain_time_time);
-	                
-	                
-	                // Go to IDLE if the timer is reached   
-	                IF "IEC_Timer_0_DB_3".Q THEN
-	                    
-	                    "Var".flow_control_valve_output := 0;
-	                    "To_contactor" := 0;
-	                    "ESD_solenoid_valve" := 0;
-	                    
-	                    "Var".In_Draining := 0;
-	                    "Var".working_seq := 0;
-	                    
-	                    
-	                    
-	                    
-	                END_IF;
-	            END_IF;
-	            
-	        //Emergency state        
-	        IF "Var".working_seq = 20 THEN
-	            
-	            
-	            "To_contactor" := 0;
-	            "ESD_solenoid_valve" := 0;
-	            "Var".flow_control_valve_output := 0;
-	           
-	            // Go to Pause from emergency (when we are in loadinbg)
-	            IF "Var".emergency_state AND "Rising_edge_enter".Q AND "Var".In_loading THEN
-	                
-	                "Rising_edge_enter".Q := 0;
-	                "Var".working_seq := 25;
-	                
-	            END_IF;
-	            
-	            
-	                // Go to Drain from emergency
-	            IF "Var".emergency_state AND "Rising_edge_enter".Q AND "Var".In_Draining THEN
-	                
-	                
-	                "Rising_edge_enter".Q := 0;
-	                "Var".working_seq := 15;
-	            END_IF;
-	            
-	            
-	            
-	            IF "Var".emergency_state AND "Rising_edge_enter".Q AND NOT "Var".In_loading THEN  //go to idle from Emergency
-	                "Rising_edge_enter".Q := 0;
-	                "Var".In_loading := 0;  
-	                "Var".In_Draining := 0;
-	                "Var".working_seq := 0;
-	                
-	            END_IF;
-	            
-	            
-	            
-	        END_IF;
-	        
-	        //Pause State   
-	        IF "Var".working_seq = 25 THEN
-	            
-	            
-	            
-	            "To_contactor" := 0;
-	            "ESD_solenoid_valve" := 0;
-	            "Var".flow_control_valve_output := 0;
-	            
-	            //Go to IDLE
-	            IF "Rising_edge_stop".Q  THEN
-	                
-	                "Rising_edge_stop".Q := 0;
-	                "Var".Total_quantity := "Var".Total_quantity + "Var".loaded_quantity;
-	                "Var".Number_of_IBC := "Var".Number_of_IBC + 1; // for the last partial IBC
-	                "Var".In_loading := 0;
-	                "IEC_Counter_0_DB".CV := 5;
-	                "Var".lotto_terminato := 1;
-	                "Var_HMI"."page number" := 15;
-	                "Var".working_seq := 0;
-	            END_IF;
-	            
-	            
-	            //Go to Draining    
-	            IF "Var".In_Draining AND "Rising_edge_start".Q THEN
-	                
-	                "Rising_edge_start".Q := 0;
-	                "Var".working_seq := 15;
-	                
-	                
-	            END_IF;
-	            
-	            //Go to Loading
-	            IF  "Var".In_loading AND  "Rising_edge_start".Q  THEN
-	                
-	                "Rising_edge_start".Q := 0;
-	                "Var".working_seq := 10;
-	                
-	            END_IF;
-	            
-	            
-	            
-	        END_IF;
+	        "Var".working_seq := 10;
 	        
 	        
+	    END_IF;
+	    
+	    
+	    // Go to Drain
+	    IF "Var".interlocks_loading
+	        AND "Var".In_Draining
+	        AND "Pendant_START_Button"
 	        
+	    THEN
 	        
+	        "Var".working_seq := 15;
 	        
+	    END_IF;
+	    
+	END_IF;
+	
+	// Loading state
+	IF "Var".working_seq = 10 THEN
+	    
+	    
+	    "To_contactor" := 1;
+	    
+	    "Flowmeter_pressure_timer".TON (IN := "Var".loading_flag,
+	    PT := T#3000ms);
+	    
+	    //After 3 seconds open the valves (to reach to a certain pressure)
+	    IF "Flowmeter_pressure_timer".Q THEN
 	        
-	        //*******************************************************************************************************
+	        "Var".working_seq := 11;
 	        
-	        //Go to Emergency if one emergency is lost
-	        IF NOT "Var".emergency_state THEN
-	            "Var".working_seq := 20;
-	        END_IF;
+	    END_IF;
+	    
+	    
+	END_IF;
+	
+	//Low flow state, Initial
+	IF "Var".working_seq = 11 THEN
+	    
+	    //"To_contactor" := 1;
+	    "Var".flow_control_valve_output := "Var".FCV_low_flow_signal;  // go to the value of low flow
+	    "ESD_solenoid_valve" := 1;
+	    
+	    
+	    // Going to High flow after loading of 50 kg, But not at the end of loading(in case of pause)
+	    IF "Var".recent_loaded_quantity > "Var".quantity_of_LH_flow_intitial AND
+	        "Var".remained_quantity > "Var".quantity_of_HL_flow_final
+	    THEN
 	        
-	        // Automatically turns off the pump and closes the valves (Go to IDLE)  
-	        IF "Var".loaded_quantity >= "Var".set_quantity THEN
-	            
-	            "Var".In_loading := 0;
-	            "Var".working_seq := 0;
-	            
-	        END_IF;
+	        "Var".working_seq := 12;
 	        
-	        //Going to pause mode, In loading value is not reset
-	        IF "Rising_edge_stop".Q AND "Var".In_loading THEN
-	            
-	            "Rising_edge_stop".Q := 0;
-	            "Var".working_seq := 25;
-	        END_IF;
+	    END_IF;
+	    
+	END_IF;
+	
+	//High flow state, Loading
+	IF "Var".working_seq = 12 THEN
+	    
+	    //Outputs in this state
+	    //"To_contactor" := 1;
+	    //"ESD_solenoid_valve" := 1;
+	    "Var".flow_control_valve_output := "Var".FCV_high_flow_signal;
+	    
+	    
+	    
+	    // Going to final low flow, final
+	    IF "Var".remained_quantity <= "Var".quantity_of_HL_flow_final THEN
 	        
-	       
-	        //Reseting the timers************************************************************************************
-	        IF "Var".In_Draining =0 THEN
-	            RESET_TIMER("IEC_Timer_0_DB_3");
-	        END_IF;
+	        "Var".working_seq := 13;
 	        
-	        IF "Var".In_loading = 0 THEN
-	            RESET_TIMER("Flowmeter_pressure_timer");
-	        END_IF;
-	        //******************************************************************************************************
+	    END_IF;
+	    
+	    
+	    
+	END_IF;
+	
+	//Low flow state, final
+	IF "Var".working_seq = 13 THEN
+	    
+	    
+	    "Var".flow_control_valve_output := "Var".FCV_low_flow_signal;  // go to the value of low flow
+	    //"ESD_solenoid_valve" := 1;
+	    //"To_contactor" := 1;
+	    
+	    
+	    //condition for going out of this state are outside (like quantity reached, pause, emergency)
+	    
+	END_IF;
+	
+	//Drain state
+	IF "Var".working_seq = 15 THEN
+	    
+	    
+	    
+	    // Outputs
+	    "To_contactor" := 0;
+	    "ESD_solenoid_valve" := 1;
+	    "Var".flow_control_valve_output := "Var".FCV_high_flow_signal;
+	    
+	    
+	    "Var".Elapsed_drain_time := TIME_TO_INT(IN := "IEC_Timer_0_DB_3".ET);
+	    "Var".Elapsed_drain_time := ROUND("Var".Elapsed_drain_time / 1000);
+	    
+	    "IEC_Timer_0_DB_3".TON (IN := "Var".In_Draining,
+	    PT := "Var".drain_time_time);
+	    
+	    
+	    // Go to IDLE if the timer is reached   
+	    IF "IEC_Timer_0_DB_3".Q THEN
+	        
+	        "Var".flow_control_valve_output := 0;
+	        "To_contactor" := 0;
+	        "ESD_solenoid_valve" := 0;
+	        
+	        "Var".In_Draining := 0;
+	        "Var".working_seq := 0;
 	        
 	        
 	        
 	        
+	    END_IF;
+	END_IF;
+	
+	//Emergency state        
+	IF "Var".working_seq = 20 THEN
+	    
+	    
+	    "To_contactor" := 0;
+	    "ESD_solenoid_valve" := 0;
+	    "Var".flow_control_valve_output := 0;
+	    
+	    // Go to Pause from emergency (when we are in loadinbg)
+	    IF "Var".emergency_state AND "Rising_edge_enter".Q AND "Var".In_loading THEN
+	        
+	        "Rising_edge_enter".Q := 0;
+	        "Var".working_seq := 25;
+	        
+	    END_IF;
+	    
+	    
+	    // Go to Drain from emergency
+	    IF "Var".emergency_state AND "Rising_edge_enter".Q AND "Var".In_Draining THEN
+	        
+	        
+	        "Rising_edge_enter".Q := 0;
+	        "Var".working_seq := 15;
+	    END_IF;
+	    
+	    
+	    
+	    IF "Var".emergency_state AND "Rising_edge_enter".Q AND NOT "Var".In_loading THEN  //go to idle from Emergency
+	        "Rising_edge_enter".Q := 0;
+	        "Var".In_loading := 0;
+	        "Var".In_Draining := 0;
+	        "Var".working_seq := 0;
+	        
+	    END_IF;
+	    
+	    
+	    
+	END_IF;
+	
+	//Pause State   
+	IF "Var".working_seq = 25 THEN
+	    
+	    
+	    
+	    "To_contactor" := 0;
+	    "ESD_solenoid_valve" := 0;
+	    "Var".flow_control_valve_output := 0;
+	    
+	    //Go to IDLE
+	    IF "Rising_edge_stop".Q THEN
+	        
+	        "Rising_edge_stop".Q := 0;
+	        "Var".Total_quantity := "Var".Total_quantity + "Var".loaded_quantity;
+	        "Var".Number_of_IBC := "Var".Number_of_IBC + 1; // for the last partial IBC
+	        "Var".In_loading := 0;
+	        "IEC_Counter_0_DB".CV := 5;
+	        "Var".lotto_terminato := 1;
+	        "Var_HMI"."page number" := 15;
+	        "Var".working_seq := 0;
+	    END_IF;
+	    
+	    
+	    //Go to Draining    
+	    IF "Var".In_Draining AND "Rising_edge_start".Q THEN
+	        
+	        "Rising_edge_start".Q := 0;
+	        "Var".working_seq := 15;
+	        
+	        
+	    END_IF;
+	    
+	    //Go to Loading
+	    IF "Var".In_loading AND "Rising_edge_start".Q THEN
+	        
+	        "Rising_edge_start".Q := 0;
+	        "Var".working_seq := 10;
+	        
+	    END_IF;
+	    
+	    
+	    
+	END_IF;
+	
+	
+	
+	
+	
+	
+	//*******************************************************************************************************
+	
+	//Go to Emergency if one emergency is lost
+	IF NOT "Var".emergency_state THEN
+	    "Var".working_seq := 20;
+	END_IF;
+	
+	// Automatically turns off the pump and closes the valves (Go to IDLE)  
+	IF "Var".loaded_quantity >= "Var".set_quantity THEN
+	    
+	    "Var".In_loading := 0;
+	    "Var".working_seq := 0;
+	    
+	END_IF;
+	
+	//Going to pause mode, In loading value is not reset
+	IF "Rising_edge_stop".Q AND "Var".In_loading THEN
+	    
+	    "Rising_edge_stop".Q := 0;
+	    "Var".working_seq := 25;
+	END_IF;
+	
+	
+	//Reseting the timers************************************************************************************
+	IF "Var".In_Draining = 0 THEN
+	    RESET_TIMER("IEC_Timer_0_DB_3");
+	END_IF;
+	
+	IF "Var".In_loading = 0 THEN
+	    RESET_TIMER("Flowmeter_pressure_timer");
+	END_IF;
+	//******************************************************************************************************
+	
+	
+	
+	
 END_FUNCTION_BLOCK
 
