@@ -48,8 +48,14 @@
         <AttributeList>
           <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
   <Parts>
-    <Part Name="PID_Compact" Version="2.3" UId="21">
-      <Instance Scope="GlobalVariable" UId="22">
+    <Access Scope="GlobalVariable" UId="21">
+      <Symbol>
+        <Component Name="Var" />
+        <Component Name="flow_control_valve_output" />
+      </Symbol>
+    </Access>
+    <Part Name="PID_Compact" Version="2.3" UId="22">
+      <Instance Scope="GlobalVariable" UId="23">
         <Component Name="PID_FCV" />
       </Instance>
     </Part>
@@ -57,90 +63,90 @@
   <Wires>
     <Wire UId="44">
       <Powerrail />
-      <NameCon UId="21" Name="en" />
+      <NameCon UId="22" Name="en" />
     </Wire>
     <Wire UId="45">
-      <OpenCon UId="23" />
-      <NameCon UId="21" Name="Setpoint" />
+      <OpenCon UId="24" />
+      <NameCon UId="22" Name="Setpoint" />
     </Wire>
     <Wire UId="46">
-      <OpenCon UId="24" />
-      <NameCon UId="21" Name="Input" />
+      <OpenCon UId="25" />
+      <NameCon UId="22" Name="Input" />
     </Wire>
     <Wire UId="47">
-      <OpenCon UId="25" />
-      <NameCon UId="21" Name="Input_PER" />
+      <OpenCon UId="26" />
+      <NameCon UId="22" Name="Input_PER" />
     </Wire>
     <Wire UId="48">
-      <OpenCon UId="26" />
-      <NameCon UId="21" Name="Disturbance" />
+      <OpenCon UId="27" />
+      <NameCon UId="22" Name="Disturbance" />
     </Wire>
     <Wire UId="49">
-      <OpenCon UId="27" />
-      <NameCon UId="21" Name="ManualEnable" />
+      <OpenCon UId="28" />
+      <NameCon UId="22" Name="ManualEnable" />
     </Wire>
     <Wire UId="50">
-      <OpenCon UId="28" />
-      <NameCon UId="21" Name="ManualValue" />
+      <OpenCon UId="29" />
+      <NameCon UId="22" Name="ManualValue" />
     </Wire>
     <Wire UId="51">
-      <OpenCon UId="29" />
-      <NameCon UId="21" Name="ErrorAck" />
+      <OpenCon UId="30" />
+      <NameCon UId="22" Name="ErrorAck" />
     </Wire>
     <Wire UId="52">
-      <OpenCon UId="30" />
-      <NameCon UId="21" Name="Reset" />
+      <OpenCon UId="31" />
+      <NameCon UId="22" Name="Reset" />
     </Wire>
     <Wire UId="53">
-      <OpenCon UId="31" />
-      <NameCon UId="21" Name="ModeActivate" />
+      <OpenCon UId="32" />
+      <NameCon UId="22" Name="ModeActivate" />
     </Wire>
     <Wire UId="54">
-      <OpenCon UId="32" />
-      <NameCon UId="21" Name="Mode" />
+      <OpenCon UId="33" />
+      <NameCon UId="22" Name="Mode" />
     </Wire>
     <Wire UId="55">
-      <NameCon UId="21" Name="ScaledInput" />
-      <OpenCon UId="33" />
-    </Wire>
-    <Wire UId="56">
-      <NameCon UId="21" Name="Output" />
+      <NameCon UId="22" Name="ScaledInput" />
       <OpenCon UId="34" />
     </Wire>
-    <Wire UId="57">
-      <NameCon UId="21" Name="Output_PER" />
+    <Wire UId="56">
+      <NameCon UId="22" Name="Output" />
       <OpenCon UId="35" />
     </Wire>
+    <Wire UId="57">
+      <NameCon UId="22" Name="Output_PER" />
+      <IdentCon UId="21" />
+    </Wire>
     <Wire UId="58">
-      <NameCon UId="21" Name="Output_PWM" />
+      <NameCon UId="22" Name="Output_PWM" />
       <OpenCon UId="36" />
     </Wire>
     <Wire UId="59">
-      <NameCon UId="21" Name="SetpointLimit_H" />
+      <NameCon UId="22" Name="SetpointLimit_H" />
       <OpenCon UId="37" />
     </Wire>
     <Wire UId="60">
-      <NameCon UId="21" Name="SetpointLimit_L" />
+      <NameCon UId="22" Name="SetpointLimit_L" />
       <OpenCon UId="38" />
     </Wire>
     <Wire UId="61">
-      <NameCon UId="21" Name="InputWarning_H" />
+      <NameCon UId="22" Name="InputWarning_H" />
       <OpenCon UId="39" />
     </Wire>
     <Wire UId="62">
-      <NameCon UId="21" Name="InputWarning_L" />
+      <NameCon UId="22" Name="InputWarning_L" />
       <OpenCon UId="40" />
     </Wire>
     <Wire UId="63">
-      <NameCon UId="21" Name="State" />
+      <NameCon UId="22" Name="State" />
       <OpenCon UId="41" />
     </Wire>
     <Wire UId="64">
-      <NameCon UId="21" Name="Error" />
+      <NameCon UId="22" Name="Error" />
       <OpenCon UId="42" />
     </Wire>
     <Wire UId="65">
-      <NameCon UId="21" Name="ErrorBits" />
+      <NameCon UId="22" Name="ErrorBits" />
       <OpenCon UId="43" />
     </Wire>
   </Wires>
@@ -198,9 +204,37 @@
           </MultilingualText>
         </ObjectList>
       </SW.Blocks.CompileUnit>
-      <MultilingualText ID="D" CompositionName="Title">
+      <SW.Blocks.CompileUnit ID="D" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource />
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
         <ObjectList>
-          <MultilingualTextItem ID="E" CompositionName="Items">
+          <MultilingualText ID="E" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="F" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="10" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="11" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <MultilingualText ID="12" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="13" CompositionName="Items">
             <AttributeList>
               <Culture>en-US</Culture>
               <Text />
