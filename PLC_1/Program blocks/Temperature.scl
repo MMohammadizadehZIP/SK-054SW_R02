@@ -1,0 +1,12 @@
+﻿FUNCTION_BLOCK "Temperature"
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+
+BEGIN
+	
+	
+	//A function of RTD1, RTD2, and RTD3 which the result gives the temperature. the following function needs modification
+	"Var".Temperature := "Var".RTD_PT100_INPUT_1 + "Var".RTD_PT100_INPUT_2 + "Var".RTD_PT100_INPUT_3;
+	
+END_FUNCTION_BLOCK
+

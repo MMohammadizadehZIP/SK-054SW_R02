@@ -1,0 +1,13 @@
+﻿ORGANIZATION_BLOCK "Startup"
+TITLE = "Complete Restart"
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+
+BEGIN
+	
+	
+	"Var_HMI"."page number" := 12;
+	
+	
+END_ORGANIZATION_BLOCK
+

@@ -1,0 +1,47 @@
+﻿FUNCTION_BLOCK "Interlocks_And_Permissive"
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+
+BEGIN
+	
+	//High level,Pendant emergency stop, panel emergency Stop sensors are Normally close
+	
+	
+	// Temperature
+	"Var".temperature_is_ok := "Var".Temperature < "Var".Temperature_threshold;
+	
+	    //"Interlocks"
+	    IF //"Capacitive_HLS"
+	        //AND "Var".temperature_is_ok
+	         "Var".emergency_state
+	        //AND "FCV_valve_closed"
+	        //AND "ESD_valve_closed"
+	        //AND "Var".Grounding
+	        
+	        THEN
+	        "Var".Interlocks_idle := 1;
+	    ELSE
+	        "Var".Interlocks_idle := 0;
+	    END_IF;
+	    
+	    
+	    
+	    
+	    
+	    //Permissive (During the process)
+	    IF  //"Capacitive_HLS"
+	        //AND "Var".temperature_is_ok
+	         "Var".emergency_state
+	        //AND "Var".Grounding
+	        
+	    THEN
+	        "Var".interlocks_loading := 1;
+	    ELSE
+	        "Var".interlocks_loading := 0;
+	    END_IF;
+	    
+	
+	
+	    
+END_FUNCTION_BLOCK
+
