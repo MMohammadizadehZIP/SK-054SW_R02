@@ -1044,136 +1044,172 @@
   </Access>
   <Token Text=";" UId="474" />
   <NewLine Num="1" UId="475" />
-  <Token Text="ELSE" UId="476" />
-  <NewLine Num="1" UId="477" />
-  <Blank Num="4" UId="478" />
-  <Access Scope="GlobalVariable" UId="479">
-    <Symbol UId="480">
-      <Component Name="stop_counting_down" UId="481">
-        <BooleanAttribute Name="HasQuotes" UId="482">true</BooleanAttribute>
+  <Blank Num="4" UId="476" />
+  <Access Scope="GlobalVariable" UId="477">
+    <Symbol UId="478">
+      <Component Name="stop_counting_down" UId="479">
+        <BooleanAttribute Name="HasQuotes" UId="480">true</BooleanAttribute>
       </Component>
     </Symbol>
   </Access>
+  <Blank Num="1" UId="481" />
+  <Token Text=":=" UId="482" />
   <Blank Num="1" UId="483" />
-  <Token Text=":=" UId="484" />
-  <Blank Num="1" UId="485" />
-  <Access Scope="LiteralConstant" UId="486">
-    <Constant UId="487">
-      <ConstantValue UId="489">0</ConstantValue>
+  <Access Scope="LiteralConstant" UId="484">
+    <Constant UId="485">
+      <ConstantValue UId="487">1</ConstantValue>
     </Constant>
   </Access>
-  <Token Text=";" UId="490" />
+  <Token Text=";" UId="488" />
+  <NewLine Num="1" UId="489" />
+  <Token Text="ELSE" UId="490" />
   <NewLine Num="1" UId="491" />
-  <Token Text="END_IF" UId="492" />
-  <Token Text=";" UId="493" />
-  <NewLine Num="3" UId="494" />
-  <Blank Num="8" UId="495" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="496">
-    <Text UId="497"> To freeze the counter</Text>
-  </LineComment>
-  <NewLine Num="1" UId="498" />
-  <Access Scope="GlobalVariable" UId="499">
-    <Symbol UId="500">
-      <Component Name="Var" UId="501">
-        <BooleanAttribute Name="HasQuotes" UId="502">true</BooleanAttribute>
+  <Blank Num="4" UId="492" />
+  <Access Scope="GlobalVariable" UId="493">
+    <Symbol UId="494">
+      <Component Name="stop_counting_down" UId="495">
+        <BooleanAttribute Name="HasQuotes" UId="496">true</BooleanAttribute>
       </Component>
-      <Token Text="." UId="503" />
-      <Component Name="freeze_counter" UId="504" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="505" />
-  <Token Text=":=" UId="506" />
-  <Blank Num="1" UId="507" />
-  <Access Scope="GlobalVariable" UId="508">
-    <Symbol UId="509">
-      <Component Name="Var" UId="510">
-        <BooleanAttribute Name="HasQuotes" UId="511">true</BooleanAttribute>
-      </Component>
-      <Token Text="." UId="512" />
-      <Component Name="working_seq" UId="513" />
-    </Symbol>
-  </Access>
-  <Blank Num="1" UId="514" />
-  <Token Text="=" UId="515" />
-  <Blank Num="1" UId="516" />
-  <Access Scope="LiteralConstant" UId="517">
-    <Constant UId="518">
-      <ConstantValue UId="520">10</ConstantValue>
+  <Blank Num="1" UId="497" />
+  <Token Text=":=" UId="498" />
+  <Blank Num="1" UId="499" />
+  <Access Scope="LiteralConstant" UId="500">
+    <Constant UId="501">
+      <ConstantValue UId="503">0</ConstantValue>
     </Constant>
   </Access>
-  <NewLine Num="1" UId="521" />
-  <Token Text="OR" UId="522" />
-  <Blank Num="1" UId="523" />
-  <Access Scope="GlobalVariable" UId="524">
-    <Symbol UId="525">
-      <Component Name="Var_HMI" UId="526">
-        <BooleanAttribute Name="HasQuotes" UId="527">true</BooleanAttribute>
+  <Token Text=";" UId="504" />
+  <NewLine Num="1" UId="505" />
+  <Blank Num="4" UId="506" />
+  <Access Scope="GlobalVariable" UId="507">
+    <Symbol UId="508">
+      <Component Name="stop_counting_down" UId="509">
+        <BooleanAttribute Name="HasQuotes" UId="510">true</BooleanAttribute>
       </Component>
-      <Token Text="." UId="528" />
-      <Component Name="in_selection" UId="529" />
     </Symbol>
   </Access>
-  <NewLine Num="1" UId="530" />
-  <Token Text="OR" UId="531" />
-  <Blank Num="1" UId="532" />
-  <Access Scope="GlobalVariable" UId="533">
-    <Symbol UId="534">
-      <Component Name="Var" UId="535">
-        <BooleanAttribute Name="HasQuotes" UId="536">true</BooleanAttribute>
+  <Blank Num="1" UId="511" />
+  <Token Text=":=" UId="512" />
+  <Blank Num="1" UId="513" />
+  <Access Scope="LiteralConstant" UId="514">
+    <Constant UId="515">
+      <ConstantValue UId="517">0</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="518" />
+  <NewLine Num="1" UId="519" />
+  <Token Text="END_IF" UId="520" />
+  <Token Text=";" UId="521" />
+  <NewLine Num="3" UId="522" />
+  <Blank Num="8" UId="523" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="524">
+    <Text UId="525"> To freeze the counter</Text>
+  </LineComment>
+  <NewLine Num="1" UId="526" />
+  <Access Scope="GlobalVariable" UId="527">
+    <Symbol UId="528">
+      <Component Name="Var" UId="529">
+        <BooleanAttribute Name="HasQuotes" UId="530">true</BooleanAttribute>
       </Component>
-      <Token Text="." UId="537" />
-      <Component Name="emergency_flag" UId="538" />
+      <Token Text="." UId="531" />
+      <Component Name="freeze_counter" UId="532" />
     </Symbol>
   </Access>
-  <NewLine Num="1" UId="539" />
-  <Token Text="OR" UId="540" />
-  <Blank Num="1" UId="541" />
-  <Access Scope="GlobalVariable" UId="542">
-    <Symbol UId="543">
-      <Component Name="Var" UId="544">
-        <BooleanAttribute Name="HasQuotes" UId="545">true</BooleanAttribute>
+  <Blank Num="1" UId="533" />
+  <Token Text=":=" UId="534" />
+  <Blank Num="1" UId="535" />
+  <Access Scope="GlobalVariable" UId="536">
+    <Symbol UId="537">
+      <Component Name="Var" UId="538">
+        <BooleanAttribute Name="HasQuotes" UId="539">true</BooleanAttribute>
       </Component>
-      <Token Text="." UId="546" />
-      <Component Name="pause_flag" UId="547" />
+      <Token Text="." UId="540" />
+      <Component Name="working_seq" UId="541" />
     </Symbol>
   </Access>
-  <NewLine Num="1" UId="548" />
-  <Token Text="OR" UId="549" />
-  <Blank Num="1" UId="550" />
-  <Access Scope="GlobalVariable" UId="551">
-    <Symbol UId="552">
-      <Component Name="Var" UId="553">
-        <BooleanAttribute Name="HasQuotes" UId="554">true</BooleanAttribute>
+  <Blank Num="1" UId="542" />
+  <Token Text="=" UId="543" />
+  <Blank Num="1" UId="544" />
+  <Access Scope="LiteralConstant" UId="545">
+    <Constant UId="546">
+      <ConstantValue UId="548">10</ConstantValue>
+    </Constant>
+  </Access>
+  <NewLine Num="1" UId="549" />
+  <Token Text="OR" UId="550" />
+  <Blank Num="1" UId="551" />
+  <Access Scope="GlobalVariable" UId="552">
+    <Symbol UId="553">
+      <Component Name="Var_HMI" UId="554">
+        <BooleanAttribute Name="HasQuotes" UId="555">true</BooleanAttribute>
       </Component>
-      <Token Text="." UId="555" />
-      <Component Name="draining_flag" UId="556" />
+      <Token Text="." UId="556" />
+      <Component Name="in_selection" UId="557" />
     </Symbol>
   </Access>
-  <NewLine Num="1" UId="557" />
-  <Token Text="OR" UId="558" />
-  <Blank Num="1" UId="559" />
-  <Token Text="(" UId="560" />
+  <NewLine Num="1" UId="558" />
+  <Token Text="OR" UId="559" />
+  <Blank Num="1" UId="560" />
   <Access Scope="GlobalVariable" UId="561">
     <Symbol UId="562">
-      <Component Name="Var_HMI" UId="563">
+      <Component Name="Var" UId="563">
         <BooleanAttribute Name="HasQuotes" UId="564">true</BooleanAttribute>
       </Component>
       <Token Text="." UId="565" />
-      <Component Name="page number" UId="566" />
+      <Component Name="emergency_flag" UId="566" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="567" />
-  <Token Text="=" UId="568" />
+  <NewLine Num="1" UId="567" />
+  <Token Text="OR" UId="568" />
   <Blank Num="1" UId="569" />
-  <Access Scope="LiteralConstant" UId="570">
-    <Constant UId="571">
-      <ConstantValue UId="573">18</ConstantValue>
+  <Access Scope="GlobalVariable" UId="570">
+    <Symbol UId="571">
+      <Component Name="Var" UId="572">
+        <BooleanAttribute Name="HasQuotes" UId="573">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="574" />
+      <Component Name="pause_flag" UId="575" />
+    </Symbol>
+  </Access>
+  <NewLine Num="1" UId="576" />
+  <Token Text="OR" UId="577" />
+  <Blank Num="1" UId="578" />
+  <Access Scope="GlobalVariable" UId="579">
+    <Symbol UId="580">
+      <Component Name="Var" UId="581">
+        <BooleanAttribute Name="HasQuotes" UId="582">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="583" />
+      <Component Name="draining_flag" UId="584" />
+    </Symbol>
+  </Access>
+  <NewLine Num="1" UId="585" />
+  <Token Text="OR" UId="586" />
+  <Blank Num="1" UId="587" />
+  <Token Text="(" UId="588" />
+  <Access Scope="GlobalVariable" UId="589">
+    <Symbol UId="590">
+      <Component Name="Var_HMI" UId="591">
+        <BooleanAttribute Name="HasQuotes" UId="592">true</BooleanAttribute>
+      </Component>
+      <Token Text="." UId="593" />
+      <Component Name="page number" UId="594" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="595" />
+  <Token Text="=" UId="596" />
+  <Blank Num="1" UId="597" />
+  <Access Scope="LiteralConstant" UId="598">
+    <Constant UId="599">
+      <ConstantValue UId="601">18</ConstantValue>
     </Constant>
   </Access>
-  <Token Text=")" UId="574" />
-  <Token Text=";" UId="575" />
-  <NewLine Num="3" UId="576" />
-  <Blank Num="8" UId="577" />
+  <Token Text=")" UId="602" />
+  <Token Text=";" UId="603" />
+  <NewLine Num="3" UId="604" />
+  <Blank Num="8" UId="605" />
 </StructuredText></NetworkSource>
           <ProgrammingLanguage>SCL</ProgrammingLanguage>
         </AttributeList>
