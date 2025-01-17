@@ -528,12 +528,16 @@
     </Symbol>
   </Access>
   <Token Text=";" UId="81" />
-  <NewLine Num="2" UId="82" />
-  <Blank Num="4" UId="83" />
-  <NewLine Num="1" UId="84" />
-  <Blank Num="4" UId="85" />
-  <NewLine Num="1" UId="86" />
-  <Blank Num="4" UId="87" />
+  <NewLine Num="3" UId="82" />
+  <LineComment Inserted="true" NoClosingBracket="false" UId="83">
+    <Text UId="84">chsnge</Text>
+  </LineComment>
+  <NewLine Num="2" UId="85" />
+  <Blank Num="4" UId="86" />
+  <NewLine Num="1" UId="87" />
+  <Blank Num="4" UId="88" />
+  <NewLine Num="1" UId="89" />
+  <Blank Num="4" UId="90" />
 </StructuredText></NetworkSource>
           <ProgrammingLanguage>SCL</ProgrammingLanguage>
         </AttributeList>
