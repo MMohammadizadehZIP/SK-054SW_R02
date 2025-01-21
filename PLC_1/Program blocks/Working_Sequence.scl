@@ -4,33 +4,36 @@ VERSION : 0.1
 
 BEGIN
 	
-	        (* Explanation of variables and states
-	            Working seq:
-	                 0  --> Idle
-	                10 --> Loading
-	                20 --> Emergency
-	                25 --> Pause
-	                
-	        *)
 	
+	(* Explanation of variables and states
+	    Working seq:
+	         0  --> Idle
+	        10 --> Loading
+	        20 --> Emergency
+	        25 --> Pause
+	        
+	*)
 	
-	//flags
-	"Var".idle_flag := "Var".working_seq = 0;
-	"Var".loading_flag := "Var".working_seq = 10 OR "Var".working_seq = 11 OR "Var".working_seq = 12 OR "Var".working_seq = 13;
-	"Var".draining_flag := "Var".working_seq = 15;
-	"Var".emergency_flag := "Var".working_seq = 20;
-	"Var".pause_flag := "Var".working_seq = 25;
-	
-	
-	
-	"Rising_edge_start"(CLK := "Pendant_START_Button");
-	"Rising_edge_stop"(CLK := "pendant_STOP_Button");
-	"Rising_edge_enter"(CLK := "ENTER_Button");
-	"Rising_edge_next"(CLK:="NEXT_Button");
-	"Rising_edge_prev"(CLK:="PREV_Button");
-	
-	"Var".quantity_of_LH_flow_intitial := REAL_TO_INT("Var".quantity_of_LH_flow_percentage_initial * "Var".set_quantity/100);
-	"Var".quantity_of_HL_flow_final := REAL_TO_INT("Var".quantity_of_HL_flow_percentage_final * "Var".set_quantity/100);
+	REGION variable Assignation
+	    
+	    "Var".idle_flag := "Var".working_seq = 0;
+	    "Var".loading_flag := "Var".working_seq = 10 OR "Var".working_seq = 11 OR "Var".working_seq = 12 OR "Var".working_seq = 13;
+	    "Var".draining_flag := "Var".working_seq = 15;
+	    "Var".emergency_flag := "Var".working_seq = 20;
+	    "Var".pause_flag := "Var".working_seq = 25;
+	    
+	    
+	    
+	    "Rising_edge_start"(CLK := "Pendant_START_Button");
+	    "Rising_edge_stop"(CLK := "pendant_STOP_Button");
+	    "Rising_edge_enter"(CLK := "ENTER_Button");
+	    "Rising_edge_next"(CLK := "NEXT_Button");
+	    "Rising_edge_prev"(CLK := "PREV_Button");
+	    
+	    "Var".quantity_of_LH_flow_intitial := REAL_TO_INT("Var".quantity_of_LH_flow_percentage_initial * "Var".set_quantity / 100);
+	    "Var".quantity_of_HL_flow_final := REAL_TO_INT("Var".quantity_of_HL_flow_percentage_final * "Var".set_quantity / 100);
+	    
+	END_REGION
 	
 	
 	        
@@ -45,7 +48,6 @@ BEGIN
 	            "Var".Ready_to_Load := 0;
 	        END_IF;
 	        
-	      
 	        //IDLE state
 	        IF "Var".working_seq = 0  THEN
 	            
@@ -176,7 +178,7 @@ BEGIN
 	                "Var".Elapsed_drain_time := TIME_TO_INT(IN := "IEC_Timer_0_DB_3".ET);
 	                "Var".Elapsed_drain_time := ROUND("Var".Elapsed_drain_time / 1000);
 	                
-	                "IEC_Timer_0_DB_3".TON(IN := "Var".In_Draining,
+	                "IEC_Timer_0_DB_3".TON(IN := "Var".draining_flag,
 	                                       PT := "Var".drain_time_time);
 	                
 	                
@@ -244,8 +246,8 @@ BEGIN
 	            "ESD_solenoid_valve" := 0;
 	            "Var".flow_control_valve_output := 0;
 	            
-	            //Go to IDLE
-	            IF "Rising_edge_stop".Q  THEN
+	            //Go to IDLE from Loading
+	            IF "Rising_edge_stop".Q AND "Var".In_loading  THEN
 	                
 	                "Rising_edge_stop".Q := 0;
 	                "Var".Total_quantity := "Var".Total_quantity + "Var".loaded_quantity;
@@ -257,6 +259,15 @@ BEGIN
 	                "Var".working_seq := 0;
 	            END_IF;
 	            
+	            //Go to IDLE from Drain
+	            IF "Rising_edge_stop".Q AND "Var".In_Draining THEN
+	                
+	                "Rising_edge_stop".Q := 0;
+	                "Var".In_Draining := 0;
+	                "IEC_Counter_0_DB".CV := 5;
+	                "Var_HMI"."page number" := 12;
+	                "Var".working_seq := 0;
+	            END_IF;
 	            
 	            //Go to Draining    
 	            IF "Var".In_Draining AND "Rising_edge_start".Q THEN
@@ -280,10 +291,6 @@ BEGIN
 	        END_IF;
 	        
 	        
-	        
-	        
-	        
-	        
 	        //*******************************************************************************************************
 	        
 	        //Go to Emergency if one emergency is lost
@@ -300,19 +307,20 @@ BEGIN
 	        END_IF;
 	        
 	        //Going to pause mode, In loading value is not reset
-	        IF "Rising_edge_stop".Q AND "Var".In_loading THEN
+	        IF "Rising_edge_stop".Q AND ("Var".In_loading OR "Var".In_Draining) THEN
 	            
 	            "Rising_edge_stop".Q := 0;
 	            "Var".working_seq := 25;
+	            
 	        END_IF;
 	        
 	       
 	        //Reseting the timers************************************************************************************
-	        IF "Var".In_Draining =0 THEN
+	        IF "Var".draining_flag =0 THEN
 	            RESET_TIMER("IEC_Timer_0_DB_3");
 	        END_IF;
 	        
-	        IF "Var".In_loading = 0 THEN
+	        IF "Var".loading_flag = 0 THEN
 	            RESET_TIMER("Flowmeter_pressure_timer");
 	        END_IF;
 	        //******************************************************************************************************

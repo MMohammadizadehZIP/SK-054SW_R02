@@ -14,7 +14,168 @@
   <Section Name="Input" />
   <Section Name="Output" />
   <Section Name="InOut" />
-  <Section Name="Static" />
+  <Section Name="Static">
+    <Member Name="HMI_In_selection_handling_Instance" Datatype="&quot;HMI_In_selection_handling&quot;" Accessibility="Public">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+      <Sections>
+        <Section Name="Input">
+          <Member Name="step_size" Datatype="Int" />
+          <Member Name="Timer_duration" Datatype="Time" />
+          <Member Name="Time_pulse_speed" Datatype="Time" />
+        </Section>
+        <Section Name="Output" />
+        <Section Name="InOut">
+          <Member Name="variable" Datatype="Int" />
+        </Section>
+        <Section Name="Static" />
+      </Sections>
+    </Member>
+    <Member Name="HMI_In_selection_handling_Instance_1" Datatype="&quot;HMI_In_selection_handling&quot;" Accessibility="Public">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+      <Sections>
+        <Section Name="Input">
+          <Member Name="step_size" Datatype="Int" />
+          <Member Name="Timer_duration" Datatype="Time" />
+          <Member Name="Time_pulse_speed" Datatype="Time" />
+        </Section>
+        <Section Name="Output" />
+        <Section Name="InOut">
+          <Member Name="variable" Datatype="Int" />
+        </Section>
+        <Section Name="Static" />
+      </Sections>
+    </Member>
+    <Member Name="HMI_In_selection_handling_Instance_2" Datatype="&quot;HMI_In_selection_handling&quot;" Accessibility="Public">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+      <Sections>
+        <Section Name="Input">
+          <Member Name="step_size" Datatype="Int" />
+          <Member Name="Timer_duration" Datatype="Time" />
+          <Member Name="Time_pulse_speed" Datatype="Time" />
+        </Section>
+        <Section Name="Output" />
+        <Section Name="InOut">
+          <Member Name="variable" Datatype="Int" />
+        </Section>
+        <Section Name="Static" />
+      </Sections>
+    </Member>
+    <Member Name="HMI_In_selection_handling_Instance_3" Datatype="&quot;HMI_In_selection_handling&quot;" Accessibility="Public">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+      <Sections>
+        <Section Name="Input">
+          <Member Name="step_size" Datatype="Int" />
+          <Member Name="Timer_duration" Datatype="Time" />
+          <Member Name="Time_pulse_speed" Datatype="Time" />
+        </Section>
+        <Section Name="Output" />
+        <Section Name="InOut">
+          <Member Name="variable" Datatype="Int" />
+        </Section>
+        <Section Name="Static" />
+      </Sections>
+    </Member>
+    <Member Name="HMI_In_selection_handling_Instance_4" Datatype="&quot;HMI_In_selection_handling&quot;" Accessibility="Public">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+      <Sections>
+        <Section Name="Input">
+          <Member Name="step_size" Datatype="Int" />
+          <Member Name="Timer_duration" Datatype="Time" />
+          <Member Name="Time_pulse_speed" Datatype="Time" />
+        </Section>
+        <Section Name="Output" />
+        <Section Name="InOut">
+          <Member Name="variable" Datatype="Int" />
+        </Section>
+        <Section Name="Static" />
+      </Sections>
+    </Member>
+    <Member Name="HMI_In_selection_handling_Instance_5" Datatype="&quot;HMI_In_selection_handling&quot;" Accessibility="Public">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+      <Sections>
+        <Section Name="Input">
+          <Member Name="step_size" Datatype="Int" />
+          <Member Name="Timer_duration" Datatype="Time" />
+          <Member Name="Time_pulse_speed" Datatype="Time" />
+        </Section>
+        <Section Name="Output" />
+        <Section Name="InOut">
+          <Member Name="variable" Datatype="Int" />
+        </Section>
+        <Section Name="Static" />
+      </Sections>
+    </Member>
+    <Member Name="HMI_In_selection_handling_Instance_6" Datatype="&quot;HMI_In_selection_handling&quot;" Accessibility="Public">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+      <Sections>
+        <Section Name="Input">
+          <Member Name="step_size" Datatype="Int" />
+          <Member Name="Timer_duration" Datatype="Time" />
+          <Member Name="Time_pulse_speed" Datatype="Time" />
+        </Section>
+        <Section Name="Output" />
+        <Section Name="InOut">
+          <Member Name="variable" Datatype="Int" />
+        </Section>
+        <Section Name="Static" />
+      </Sections>
+    </Member>
+    <Member Name="HMI_In_selection_handling_Instance_7" Datatype="&quot;HMI_In_selection_handling&quot;" Accessibility="Public">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+      <Sections>
+        <Section Name="Input">
+          <Member Name="step_size" Datatype="Int" />
+          <Member Name="Timer_duration" Datatype="Time" />
+          <Member Name="Time_pulse_speed" Datatype="Time" />
+        </Section>
+        <Section Name="Output" />
+        <Section Name="InOut">
+          <Member Name="variable" Datatype="Int" />
+        </Section>
+        <Section Name="Static" />
+      </Sections>
+    </Member>
+  </Section>
 </Sections></Interface>
       <Name>Display_management_DB</Name>
       <Namespace />

@@ -48,18 +48,95 @@
         <AttributeList>
           <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
   <Parts>
-    <Call UId="21">
+    <Access Scope="GlobalVariable" UId="21">
+      <Symbol>
+        <Component Name="Var" />
+        <Component Name="reset_counter" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="22">
+      <Symbol>
+        <Component Name="Var" />
+        <Component Name="set_quantity" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="23">
+      <Symbol>
+        <Component Name="Var" />
+        <Component Name="instat_flowrate" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="24">
+      <Symbol>
+        <Component Name="Var" />
+        <Component Name="loaded_quantity" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="25">
+      <Symbol>
+        <Component Name="Var" />
+        <Component Name="remained_quantity" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="26">
+      <Symbol>
+        <Component Name="Var" />
+        <Component Name="time_remained" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="27">
+      <Symbol>
+        <Component Name="Var" />
+        <Component Name="recent_loaded_quantity" />
+      </Symbol>
+    </Access>
+    <Call UId="28">
       <CallInfo Name="flow_measurement" BlockType="FB">
-        <Instance Scope="GlobalVariable" UId="22">
+        <Instance Scope="GlobalVariable" UId="29">
           <Component Name="flow_measurement_ladder_DB" />
         </Instance>
+        <Parameter Name="reset_counter" Section="Input" Type="Bool" />
+        <Parameter Name="set_quantity" Section="Input" Type="Int" />
+        <Parameter Name="instant_flowrate" Section="Input" Type="Int" />
+        <Parameter Name="loaded_quantity" Section="Output" Type="Real" />
+        <Parameter Name="remained_quantity" Section="Output" Type="Real" />
+        <Parameter Name="time_remained" Section="Output" Type="Real" />
+        <Parameter Name="recent_loaded_quantity" Section="Output" Type="Real" />
       </CallInfo>
     </Call>
   </Parts>
   <Wires>
-    <Wire UId="23">
+    <Wire UId="30">
       <Powerrail />
-      <NameCon UId="21" Name="en" />
+      <NameCon UId="28" Name="en" />
+    </Wire>
+    <Wire UId="31">
+      <IdentCon UId="21" />
+      <NameCon UId="28" Name="reset_counter" />
+    </Wire>
+    <Wire UId="32">
+      <IdentCon UId="22" />
+      <NameCon UId="28" Name="set_quantity" />
+    </Wire>
+    <Wire UId="33">
+      <IdentCon UId="23" />
+      <NameCon UId="28" Name="instant_flowrate" />
+    </Wire>
+    <Wire UId="34">
+      <NameCon UId="28" Name="loaded_quantity" />
+      <IdentCon UId="24" />
+    </Wire>
+    <Wire UId="35">
+      <NameCon UId="28" Name="remained_quantity" />
+      <IdentCon UId="25" />
+    </Wire>
+    <Wire UId="36">
+      <NameCon UId="28" Name="time_remained" />
+      <IdentCon UId="26" />
+    </Wire>
+    <Wire UId="37">
+      <NameCon UId="28" Name="recent_loaded_quantity" />
+      <IdentCon UId="27" />
     </Wire>
   </Wires>
 </FlgNet></NetworkSource>
@@ -224,18 +301,114 @@
         <AttributeList>
           <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v4">
   <Parts>
-    <Call UId="21">
+    <Access Scope="GlobalVariable" UId="21">
+      <Symbol>
+        <Component Name="Capacitive_HLS" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="22">
+      <Symbol>
+        <Component Name="Var" />
+        <Component Name="Temperature" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="23">
+      <Symbol>
+        <Component Name="Var" />
+        <Component Name="emergency_state" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="24">
+      <Symbol>
+        <Component Name="FCV_valve_closed" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="25">
+      <Symbol>
+        <Component Name="ESD_valve_closed" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="26">
+      <Symbol>
+        <Component Name="Var" />
+        <Component Name="Grounding" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="27">
+      <Symbol>
+        <Component Name="Var" />
+        <Component Name="Temperature_threshold" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="28">
+      <Symbol>
+        <Component Name="Var" />
+        <Component Name="Interlocks_idle" />
+      </Symbol>
+    </Access>
+    <Access Scope="GlobalVariable" UId="29">
+      <Symbol>
+        <Component Name="Var" />
+        <Component Name="interlocks_loading" />
+      </Symbol>
+    </Access>
+    <Call UId="30">
       <CallInfo Name="Interlocks_And_Permissive" BlockType="FB">
-        <Instance Scope="GlobalVariable" UId="22">
+        <Instance Scope="GlobalVariable" UId="31">
           <Component Name="Interlocks_DB" />
         </Instance>
+        <Parameter Name="capacitive_HLS" Section="Input" Type="Bool" />
+        <Parameter Name="temperature" Section="Input" Type="Int" />
+        <Parameter Name="emergency_state" Section="Input" Type="Bool" />
+        <Parameter Name="FCV_valve_closed" Section="Input" Type="Bool" />
+        <Parameter Name="ESD_valve_closed" Section="Input" Type="Bool" />
+        <Parameter Name="grounding" Section="Input" Type="Bool" />
+        <Parameter Name="Temperature_threshold" Section="Input" Type="Int" />
+        <Parameter Name="interlocks_idle" Section="Output" Type="Bool" />
+        <Parameter Name="interlocks_loading" Section="Output" Type="Bool" />
       </CallInfo>
     </Call>
   </Parts>
   <Wires>
-    <Wire UId="23">
+    <Wire UId="32">
       <Powerrail />
-      <NameCon UId="21" Name="en" />
+      <NameCon UId="30" Name="en" />
+    </Wire>
+    <Wire UId="33">
+      <IdentCon UId="21" />
+      <NameCon UId="30" Name="capacitive_HLS" />
+    </Wire>
+    <Wire UId="34">
+      <IdentCon UId="22" />
+      <NameCon UId="30" Name="temperature" />
+    </Wire>
+    <Wire UId="35">
+      <IdentCon UId="23" />
+      <NameCon UId="30" Name="emergency_state" />
+    </Wire>
+    <Wire UId="36">
+      <IdentCon UId="24" />
+      <NameCon UId="30" Name="FCV_valve_closed" />
+    </Wire>
+    <Wire UId="37">
+      <IdentCon UId="25" />
+      <NameCon UId="30" Name="ESD_valve_closed" />
+    </Wire>
+    <Wire UId="38">
+      <IdentCon UId="26" />
+      <NameCon UId="30" Name="grounding" />
+    </Wire>
+    <Wire UId="39">
+      <IdentCon UId="27" />
+      <NameCon UId="30" Name="Temperature_threshold" />
+    </Wire>
+    <Wire UId="40">
+      <NameCon UId="30" Name="interlocks_idle" />
+      <IdentCon UId="28" />
+    </Wire>
+    <Wire UId="41">
+      <NameCon UId="30" Name="interlocks_loading" />
+      <IdentCon UId="29" />
     </Wire>
   </Wires>
 </FlgNet></NetworkSource>

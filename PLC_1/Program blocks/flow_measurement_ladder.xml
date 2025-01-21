@@ -9,8 +9,59 @@
       <HeaderName />
       <HeaderVersion>0.1</HeaderVersion>
       <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
-  <Section Name="Input" />
-  <Section Name="Output" />
+  <Section Name="Input">
+    <Member Name="reset_counter" Datatype="Bool" Remanence="NonRetain" Accessibility="Public">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="set_quantity" Datatype="Int" Remanence="NonRetain" Accessibility="Public">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="instant_flowrate" Datatype="Int" Remanence="NonRetain" Accessibility="Public">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+  </Section>
+  <Section Name="Output">
+    <Member Name="loaded_quantity" Datatype="Real" Remanence="NonRetain" Accessibility="Public">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="remained_quantity" Datatype="Real" Remanence="NonRetain" Accessibility="Public">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="time_remained" Datatype="Real" Remanence="NonRetain" Accessibility="Public">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="recent_loaded_quantity" Datatype="Real" Remanence="NonRetain" Accessibility="Public">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+  </Section>
   <Section Name="InOut" />
   <Section Name="Static">
     <Member Name="K_factor" Datatype="Real" Remanence="NonRetain" Accessibility="Public">
@@ -21,6 +72,22 @@
         <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
       </AttributeList>
       <StartValue>10.0</StartValue>
+    </Member>
+    <Member Name="counter_real" Datatype="Real" Remanence="NonRetain" Accessibility="Public">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="pulse_temp" Datatype="DInt" Remanence="NonRetain" Accessibility="Public">
+      <AttributeList>
+        <BooleanAttribute Name="ExternalAccessible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalVisible" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="ExternalWritable" SystemDefined="true">true</BooleanAttribute>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">false</BooleanAttribute>
+      </AttributeList>
     </Member>
   </Section>
   <Section Name="Temp">
@@ -140,9 +207,8 @@
     <Access Scope="GlobalConstant" UId="21">
       <Constant Name="Local~HSC_1" />
     </Access>
-    <Access Scope="GlobalVariable" UId="22">
+    <Access Scope="LocalVariable" UId="22">
       <Symbol>
-        <Component Name="Var" />
         <Component Name="reset_counter" />
       </Symbol>
     </Access>
@@ -236,188 +302,129 @@
     <Text UId="23">counted pulse by HSC</Text>
   </LineComment>
   <NewLine Num="1" UId="24" />
-  <Access Scope="GlobalVariable" UId="25">
+  <Access Scope="LocalVariable" UId="25">
     <Symbol UId="26">
-      <Component Name="Var" UId="27">
-        <BooleanAttribute Name="HasQuotes" UId="28">true</BooleanAttribute>
-      </Component>
-      <Token Text="." UId="29" />
-      <Component Name="counter" UId="30" />
+      <Component Name="counter_real" UId="27" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="31" />
-  <Token Text=":=" UId="32" />
-  <Blank Num="1" UId="33" />
-  <Access Scope="GlobalVariable" UId="34">
-    <Symbol UId="35">
-      <Component Name="Pulse1" UId="36">
-        <BooleanAttribute Name="HasQuotes" UId="37">true</BooleanAttribute>
-      </Component>
-    </Symbol>
-  </Access>
-  <Token Text=";" UId="38" />
-  <NewLine Num="1" UId="39" />
-  <Access Scope="GlobalVariable" UId="40">
-    <Symbol UId="41">
-      <Component Name="Var" UId="42">
-        <BooleanAttribute Name="HasQuotes" UId="43">true</BooleanAttribute>
-      </Component>
-      <Token Text="." UId="44" />
-      <Component Name="counter_real" UId="45" />
-    </Symbol>
-  </Access>
-  <Blank Num="1" UId="46" />
-  <Token Text=":=" UId="47" />
-  <Blank Num="1" UId="48" />
-  <Access Scope="Call" UId="49">
-    <Instruction Name="DINT_TO_REAL" UId="50">
-      <Token Text="(" UId="51" />
-      <Parameter Name="IN" UId="52">
-        <Blank Num="1" UId="53" />
-        <Token Text=":=" UId="54" />
-        <Blank Num="1" UId="55" />
-        <Access Scope="GlobalVariable" UId="56">
-          <Symbol UId="57">
-            <Component Name="Var" UId="58">
-              <BooleanAttribute Name="HasQuotes" UId="59">true</BooleanAttribute>
+  <Blank Num="1" UId="28" />
+  <Token Text=":=" UId="29" />
+  <Blank Num="1" UId="30" />
+  <Access Scope="Call" UId="31">
+    <Instruction Name="DINT_TO_REAL" UId="32">
+      <Token Text="(" UId="33" />
+      <Parameter Name="IN" UId="34">
+        <Blank Num="1" UId="35" />
+        <Token Text=":=" UId="36" />
+        <Access Scope="GlobalVariable" UId="37">
+          <Symbol UId="38">
+            <Component Name="Pulse1" UId="39">
+              <BooleanAttribute Name="HasQuotes" UId="40">true</BooleanAttribute>
             </Component>
-            <Token Text="." UId="60" />
-            <Component Name="counter" UId="61" />
           </Symbol>
         </Access>
       </Parameter>
-      <Token Text=")" UId="63" />
+      <Token Text=")" UId="42" />
     </Instruction>
   </Access>
-  <Token Text=";" UId="64" />
-  <NewLine Num="4" UId="65" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="66">
-    <Text UId="67">K_factor should be edited correctly</Text>
+  <Token Text=";" UId="43" />
+  <NewLine Num="4" UId="44" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="45">
+    <Text UId="46">K_factor should be edited correctly</Text>
   </LineComment>
-  <NewLine Num="1" UId="68" />
-  <Access Scope="GlobalVariable" UId="69">
-    <Symbol UId="70">
-      <Component Name="Var" UId="71">
-        <BooleanAttribute Name="HasQuotes" UId="72">true</BooleanAttribute>
-      </Component>
-      <Token Text="." UId="73" />
-      <Component Name="loaded_quantity" UId="74" />
+  <NewLine Num="1" UId="47" />
+  <Access Scope="LocalVariable" UId="48">
+    <Symbol UId="49">
+      <Component Name="loaded_quantity" UId="50" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="75" />
-  <Token Text=":=" UId="76" />
-  <Blank Num="1" UId="77" />
-  <Access Scope="LocalVariable" UId="78">
-    <Symbol UId="79">
-      <Component Name="K_factor" UId="80" />
+  <Blank Num="1" UId="51" />
+  <Token Text=":=" UId="52" />
+  <Blank Num="1" UId="53" />
+  <Access Scope="LocalVariable" UId="54">
+    <Symbol UId="55">
+      <Component Name="K_factor" UId="56" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="81" />
-  <Token Text="*" UId="82" />
-  <Blank Num="1" UId="83" />
-  <Access Scope="GlobalVariable" UId="84">
-    <Symbol UId="85">
-      <Component Name="Pulse1" UId="86">
-        <BooleanAttribute Name="HasQuotes" UId="87">true</BooleanAttribute>
-      </Component>
+  <Blank Num="1" UId="57" />
+  <Token Text="*" UId="58" />
+  <Blank Num="1" UId="59" />
+  <Access Scope="LocalVariable" UId="60">
+    <Symbol UId="61">
+      <Component Name="counter_real" UId="62" />
     </Symbol>
   </Access>
-  <Token Text=";" UId="88" />
-  <NewLine Num="4" UId="89" />
-  <LineComment Inserted="false" NoClosingBracket="false" UId="90">
-    <Text UId="91">Time remained(in seconds, that's why multiplied by 3600)</Text>
+  <Token Text=";" UId="63" />
+  <NewLine Num="4" UId="64" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="65">
+    <Text UId="66">Time remained(in seconds, that's why multiplied by 3600)</Text>
   </LineComment>
-  <NewLine Num="1" UId="92" />
-  <Access Scope="GlobalVariable" UId="93">
-    <Symbol UId="94">
-      <Component Name="Var" UId="95">
-        <BooleanAttribute Name="HasQuotes" UId="96">true</BooleanAttribute>
-      </Component>
-      <Token Text="." UId="97" />
-      <Component Name="remained_quantity" UId="98" />
+  <NewLine Num="1" UId="67" />
+  <Access Scope="LocalVariable" UId="68">
+    <Symbol UId="69">
+      <Component Name="remained_quantity" UId="70" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="99" />
-  <Token Text=":=" UId="100" />
-  <Blank Num="1" UId="101" />
-  <Token Text="(" UId="102" />
-  <Access Scope="GlobalVariable" UId="103">
-    <Symbol UId="104">
-      <Component Name="Var" UId="105">
-        <BooleanAttribute Name="HasQuotes" UId="106">true</BooleanAttribute>
-      </Component>
-      <Token Text="." UId="107" />
-      <Component Name="set_quantity" UId="108" />
+  <Blank Num="1" UId="71" />
+  <Token Text=":=" UId="72" />
+  <Blank Num="1" UId="73" />
+  <Token Text="(" UId="74" />
+  <Access Scope="LocalVariable" UId="75">
+    <Symbol UId="76">
+      <Component Name="set_quantity" UId="77" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="109" />
-  <Token Text="-" UId="110" />
-  <Blank Num="1" UId="111" />
-  <Access Scope="Call" UId="112">
-    <Instruction Name="REAL_TO_INT" UId="113">
-      <Token Text="(" UId="114" />
-      <NamelessParameter UId="115">
-        <Access Scope="GlobalVariable" UId="116">
-          <Symbol UId="117">
-            <Component Name="Var" UId="118">
-              <BooleanAttribute Name="HasQuotes" UId="119">true</BooleanAttribute>
-            </Component>
-            <Token Text="." UId="120" />
-            <Component Name="loaded_quantity" UId="121" />
+  <Blank Num="1" UId="78" />
+  <Token Text="-" UId="79" />
+  <Blank Num="1" UId="80" />
+  <Access Scope="Call" UId="81">
+    <Instruction Name="REAL_TO_INT" UId="82">
+      <Token Text="(" UId="83" />
+      <NamelessParameter UId="84">
+        <Access Scope="LocalVariable" UId="85">
+          <Symbol UId="86">
+            <Component Name="loaded_quantity" UId="87" />
           </Symbol>
         </Access>
       </NamelessParameter>
-      <Token Text=")" UId="123" />
+      <Token Text=")" UId="89" />
     </Instruction>
   </Access>
-  <Token Text=")" UId="124" />
-  <Token Text=";" UId="125" />
-  <NewLine Num="1" UId="126" />
-  <Access Scope="GlobalVariable" UId="127">
-    <Symbol UId="128">
-      <Component Name="Var" UId="129">
-        <BooleanAttribute Name="HasQuotes" UId="130">true</BooleanAttribute>
-      </Component>
-      <Token Text="." UId="131" />
-      <Component Name="time_remained" UId="132" />
+  <Token Text=")" UId="90" />
+  <Token Text=";" UId="91" />
+  <NewLine Num="1" UId="92" />
+  <Access Scope="LocalVariable" UId="93">
+    <Symbol UId="94">
+      <Component Name="time_remained" UId="95" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="133" />
-  <Token Text=":=" UId="134" />
-  <Blank Num="1" UId="135" />
-  <Token Text="(" UId="136" />
-  <Access Scope="GlobalVariable" UId="137">
-    <Symbol UId="138">
-      <Component Name="Var" UId="139">
-        <BooleanAttribute Name="HasQuotes" UId="140">true</BooleanAttribute>
-      </Component>
-      <Token Text="." UId="141" />
-      <Component Name="remained_quantity" UId="142" />
+  <Blank Num="1" UId="96" />
+  <Token Text=":=" UId="97" />
+  <Blank Num="1" UId="98" />
+  <Token Text="(" UId="99" />
+  <Access Scope="LocalVariable" UId="100">
+    <Symbol UId="101">
+      <Component Name="remained_quantity" UId="102" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="143" />
-  <Token Text="/" UId="144" />
-  <Blank Num="1" UId="145" />
-  <Access Scope="GlobalVariable" UId="146">
-    <Symbol UId="147">
-      <Component Name="Var" UId="148">
-        <BooleanAttribute Name="HasQuotes" UId="149">true</BooleanAttribute>
-      </Component>
-      <Token Text="." UId="150" />
-      <Component Name="instat_flowrate" UId="151" />
+  <Blank Num="1" UId="103" />
+  <Token Text="/" UId="104" />
+  <Access Scope="LocalVariable" UId="105">
+    <Symbol UId="106">
+      <Component Name="instant_flowrate" UId="107" />
     </Symbol>
   </Access>
-  <Token Text=")" UId="152" />
-  <Blank Num="1" UId="153" />
-  <Token Text="*" UId="154" />
-  <Blank Num="1" UId="155" />
-  <Access Scope="LiteralConstant" UId="156">
-    <Constant UId="157">
-      <ConstantValue UId="159">3600</ConstantValue>
+  <Token Text=")" UId="108" />
+  <Blank Num="1" UId="109" />
+  <Token Text="*" UId="110" />
+  <Blank Num="1" UId="111" />
+  <Access Scope="LiteralConstant" UId="112">
+    <Constant UId="113">
+      <ConstantValue UId="115">3600</ConstantValue>
     </Constant>
   </Access>
-  <Token Text=";" UId="160" />
-  <NewLine Num="1" UId="161" />
+  <Token Text=";" UId="116" />
+  <NewLine Num="1" UId="117" />
 </StructuredText></NetworkSource>
           <ProgrammingLanguage>SCL</ProgrammingLanguage>
         </AttributeList>
@@ -463,81 +470,60 @@
   <Token Text="THEN" UId="31" />
   <NewLine Num="1" UId="32" />
   <Blank Num="4" UId="33" />
-  <Access Scope="GlobalVariable" UId="34">
+  <Access Scope="LocalVariable" UId="34">
     <Symbol UId="35">
-      <Component Name="Var" UId="36">
-        <BooleanAttribute Name="HasQuotes" UId="37">true</BooleanAttribute>
-      </Component>
-      <Token Text="." UId="38" />
-      <Component Name="pulse_temp" UId="39" />
+      <Component Name="pulse_temp" UId="36" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="40" />
-  <Token Text=":=" UId="41" />
-  <Blank Num="1" UId="42" />
-  <Access Scope="GlobalVariable" UId="43">
-    <Symbol UId="44">
-      <Component Name="Pulse1" UId="45">
-        <BooleanAttribute Name="HasQuotes" UId="46">true</BooleanAttribute>
+  <Blank Num="1" UId="37" />
+  <Token Text=":=" UId="38" />
+  <Access Scope="GlobalVariable" UId="39">
+    <Symbol UId="40">
+      <Component Name="Pulse1" UId="41">
+        <BooleanAttribute Name="HasQuotes" UId="42">true</BooleanAttribute>
       </Component>
     </Symbol>
   </Access>
-  <Token Text=";" UId="47" />
-  <NewLine Num="1" UId="48" />
-  <Token Text="END_IF" UId="49" />
-  <Token Text=";" UId="50" />
-  <NewLine Num="2" UId="51" />
-  <Access Scope="GlobalVariable" UId="52">
-    <Symbol UId="53">
-      <Component Name="Var" UId="54">
-        <BooleanAttribute Name="HasQuotes" UId="55">true</BooleanAttribute>
-      </Component>
-      <Token Text="." UId="56" />
-      <Component Name="recent_loaded_quantity" UId="57" />
+  <Token Text=";" UId="43" />
+  <NewLine Num="1" UId="44" />
+  <Token Text="END_IF" UId="45" />
+  <Token Text=";" UId="46" />
+  <NewLine Num="2" UId="47" />
+  <Access Scope="LocalVariable" UId="48">
+    <Symbol UId="49">
+      <Component Name="recent_loaded_quantity" UId="50" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="58" />
-  <Token Text=":=" UId="59" />
-  <Blank Num="1" UId="60" />
-  <Token Text="(" UId="61" />
-  <Access Scope="GlobalVariable" UId="62">
+  <Blank Num="1" UId="51" />
+  <Token Text=":=" UId="52" />
+  <Blank Num="1" UId="53" />
+  <Token Text="(" UId="54" />
+  <Access Scope="GlobalVariable" UId="55">
+    <Symbol UId="56">
+      <Component Name="Pulse1" UId="57">
+        <BooleanAttribute Name="HasQuotes" UId="58">true</BooleanAttribute>
+      </Component>
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="59" />
+  <Token Text="-" UId="60" />
+  <Blank Num="1" UId="61" />
+  <Access Scope="LocalVariable" UId="62">
     <Symbol UId="63">
-      <Component Name="Pulse1" UId="64">
-        <BooleanAttribute Name="HasQuotes" UId="65">true</BooleanAttribute>
-      </Component>
+      <Component Name="pulse_temp" UId="64" />
     </Symbol>
   </Access>
-  <Blank Num="1" UId="66" />
-  <Token Text="-" UId="67" />
-  <Blank Num="1" UId="68" />
-  <Access Scope="GlobalVariable" UId="69">
-    <Symbol UId="70">
-      <Component Name="Var" UId="71">
-        <BooleanAttribute Name="HasQuotes" UId="72">true</BooleanAttribute>
-      </Component>
-      <Token Text="." UId="73" />
-      <Component Name="pulse_temp" UId="74" />
+  <Token Text=")" UId="65" />
+  <Token Text="*" UId="66" />
+  <Blank Num="1" UId="67" />
+  <Access Scope="LocalVariable" UId="68">
+    <Symbol UId="69">
+      <Component Name="K_factor" UId="70" />
     </Symbol>
   </Access>
-  <Token Text=")" UId="75" />
-  <Token Text="*" UId="76" />
-  <Blank Num="1" UId="77" />
-  <Access Scope="LocalVariable" UId="78">
-    <Symbol UId="79">
-      <Component Name="K_factor" UId="80" />
-    </Symbol>
-  </Access>
-  <Token Text=";" UId="81" />
-  <NewLine Num="3" UId="82" />
-  <LineComment Inserted="true" NoClosingBracket="false" UId="83">
-    <Text UId="84">chsngeSSSSDADA</Text>
-  </LineComment>
-  <NewLine Num="2" UId="85" />
-  <Blank Num="4" UId="86" />
-  <NewLine Num="1" UId="87" />
-  <Blank Num="4" UId="88" />
-  <NewLine Num="1" UId="89" />
-  <Blank Num="4" UId="90" />
+  <Token Text=";" UId="71" />
+  <NewLine Num="3" UId="72" />
+  <Blank Num="4" UId="73" />
 </StructuredText></NetworkSource>
           <ProgrammingLanguage>SCL</ProgrammingLanguage>
         </AttributeList>

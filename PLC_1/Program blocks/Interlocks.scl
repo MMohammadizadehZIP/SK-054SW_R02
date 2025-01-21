@@ -1,42 +1,64 @@
 ﻿FUNCTION_BLOCK "Interlocks_And_Permissive"
 { S7_Optimized_Access := 'TRUE' }
 VERSION : 0.1
+   VAR_INPUT 
+      capacitive_HLS : Bool;
+      temperature : Int;
+      emergency_state : Bool;
+      FCV_valve_closed : Bool;
+      ESD_valve_closed : Bool;
+      grounding : Bool;
+      Temperature_threshold : Int;
+   END_VAR
+
+   VAR_OUTPUT 
+      interlocks_idle : Bool;
+      interlocks_loading : Bool;
+   END_VAR
+
+   VAR 
+      Temperature_is_ok : Bool;
+   END_VAR
+
 
 BEGIN
+	
 	
 	//High level,Pendant emergency stop, panel emergency Stop sensors are Normally close
 	
 	
 	// Temperature
-	"Var".temperature_is_ok := "Var".Temperature < "Var".Temperature_threshold;
+	#Temperature_is_ok := #temperature < #Temperature_threshold;
 	
 	    //"Interlocks"
-	    IF //"Capacitive_HLS"
-	        //AND "Var".temperature_is_ok
-	         "Var".emergency_state
-	        //AND "FCV_valve_closed"
-	        //AND "ESD_valve_closed"
-	        //AND "Var".Grounding
+	IF            
+	        //AND #Temperature_is_ok
+	        #emergency_state
+	        //AND #FCV_valve_closed
+	        //AND #ESD_valve_closed
+	        //AND #grounding
 	        
 	        THEN
-	        "Var".Interlocks_idle := 1;
+	            
+	        #interlocks_idle := 1;
 	    ELSE
-	        "Var".Interlocks_idle := 0;
+	        #interlocks_idle := 0;
 	    END_IF;
 	    
 	    
 	    
 	    
-	    //Permissive (During the process)
-	    IF  //"Capacitive_HLS"
-	        //AND "Var".temperature_is_ok
-	         "Var".emergency_state
-	        //AND "Var".Grounding
+	    
+	    //Permissive (During the process, valves can be open)
+	    IF      
+	            //#Temperature_is_ok
+	            #emergency_state
+	         //AND #grounding
 	        
 	    THEN
-	        "Var".interlocks_loading := 1;
+	        #interlocks_loading := 1;
 	    ELSE
-	        "Var".interlocks_loading := 0;
+	        #interlocks_loading := 0;
 	    END_IF;
 	    
 	
