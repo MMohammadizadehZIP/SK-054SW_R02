@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V18" />
+  <SW.Blocks.FC ID="0">
+    <AttributeList>
+      <AutoNumber>true</AutoNumber>
+      <HeaderAuthor />
+      <HeaderFamily />
+      <HeaderName />
+      <HeaderVersion>0.1</HeaderVersion>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+  <Section Name="Input">
+    <Member Name="capacitive_HLS" Datatype="Bool" Accessibility="Public" />
+    <Member Name="temperature" Datatype="Int" Accessibility="Public" />
+    <Member Name="emergency_state" Datatype="Bool" Accessibility="Public" />
+    <Member Name="FCV_valve_closed" Datatype="Bool" Accessibility="Public" />
+    <Member Name="ESD_valve_closed" Datatype="Bool" Accessibility="Public" />
+    <Member Name="grounding" Datatype="Bool" Accessibility="Public" />
+    <Member Name="Temperature_threshold" Datatype="Real" Accessibility="Public" />
+  </Section>
+  <Section Name="Output">
+    <Member Name="temperature_is_ok" Datatype="Bool" Accessibility="Public" />
+    <Member Name="interlocks" Datatype="Bool" Accessibility="Public" />
+  </Section>
+  <Section Name="InOut" />
+  <Section Name="Temp" />
+  <Section Name="Constant" />
+  <Section Name="Return">
+    <Member Name="Ret_Val" Datatype="Void" Accessibility="Public" />
+  </Section>
+</Sections></Interface>
+      <IsIECCheckEnabled>false</IsIECCheckEnabled>
+      <MemoryLayout>Optimized</MemoryLayout>
+      <Name>Interlocks</Name>
+      <Namespace />
+      <Number>1</Number>
+      <ProgrammingLanguage>SCL</ProgrammingLanguage>
+      <SetENOAutomatically>false</SetENOAutomatically>
+      <UDABlockProperties />
+      <UDAEnableTagReadback>false</UDAEnableTagReadback>
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <SW.Blocks.CompileUnit ID="3" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><StructuredText xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/StructuredText/v3">
+  <NewLine Num="1" UId="21" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="22">
+    <Text UId="23">High level,Pendant emergency stop, panel emergency Stop sensors are Normally close</Text>
+  </LineComment>
+  <NewLine Num="2" UId="24" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="25">
+    <Text UId="26"> Temperature, divided by ten because it the program it shows it 10x</Text>
+  </LineComment>
+  <NewLine Num="1" UId="27" />
+  <Access Scope="LocalVariable" UId="28">
+    <Symbol UId="29">
+      <Component Name="temperature_is_ok" UId="30" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="31" />
+  <Token Text=":=" UId="32" />
+  <Blank Num="1" UId="33" />
+  <Access Scope="LocalVariable" UId="34">
+    <Symbol UId="35">
+      <Component Name="temperature" UId="36" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="37" />
+  <Token Text="/" UId="38" />
+  <Blank Num="1" UId="39" />
+  <Access Scope="LiteralConstant" UId="40">
+    <Constant UId="41">
+      <ConstantValue UId="43">10</ConstantValue>
+    </Constant>
+  </Access>
+  <Blank Num="1" UId="44" />
+  <Token Text="&lt;" UId="45" />
+  <Blank Num="1" UId="46" />
+  <Access Scope="LocalVariable" UId="47">
+    <Symbol UId="48">
+      <Component Name="Temperature_threshold" UId="49" />
+    </Symbol>
+  </Access>
+  <Token Text=";" UId="50" />
+  <NewLine Num="2" UId="51" />
+  <LineComment Inserted="false" NoClosingBracket="false" UId="52">
+    <Text UId="53">"Interlocks</Text>
+  </LineComment>
+  <NewLine Num="1" UId="54" />
+  <Token Text="IF" UId="55" />
+  <NewLine Num="1" UId="56" />
+  <Blank Num="4" UId="57" />
+  <Access Scope="LocalVariable" UId="58">
+    <Symbol UId="59">
+      <Component Name="temperature_is_ok" UId="60" />
+    </Symbol>
+  </Access>
+  <NewLine Num="1" UId="61" />
+  <Blank Num="4" UId="62" />
+  <Token Text="AND" UId="63" />
+  <Blank Num="1" UId="64" />
+  <Access Scope="LocalVariable" UId="65">
+    <Symbol UId="66">
+      <Component Name="emergency_state" UId="67" />
+    </Symbol>
+  </Access>
+  <NewLine Num="1" UId="68" />
+  <Blank Num="4" UId="69" />
+  <Token Text="AND" UId="70" />
+  <Blank Num="1" UId="71" />
+  <Access Scope="LocalVariable" UId="72">
+    <Symbol UId="73">
+      <Component Name="FCV_valve_closed" UId="74" />
+    </Symbol>
+  </Access>
+  <NewLine Num="1" UId="75" />
+  <Blank Num="4" UId="76" />
+  <Token Text="AND" UId="77" />
+  <Blank Num="1" UId="78" />
+  <Access Scope="LocalVariable" UId="79">
+    <Symbol UId="80">
+      <Component Name="ESD_valve_closed" UId="81" />
+    </Symbol>
+  </Access>
+  <NewLine Num="1" UId="82" />
+  <Blank Num="4" UId="83" />
+  <Token Text="AND" UId="84" />
+  <Blank Num="1" UId="85" />
+  <Access Scope="LocalVariable" UId="86">
+    <Symbol UId="87">
+      <Component Name="grounding" UId="88" />
+    </Symbol>
+  </Access>
+  <NewLine Num="1" UId="89" />
+  <Token Text="THEN" UId="90" />
+  <NewLine Num="1" UId="91" />
+  <Blank Num="4" UId="92" />
+  <NewLine Num="1" UId="93" />
+  <Blank Num="4" UId="94" />
+  <Access Scope="LocalVariable" UId="95">
+    <Symbol UId="96">
+      <Component Name="interlocks" UId="97" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="98" />
+  <Token Text=":=" UId="99" />
+  <Blank Num="1" UId="100" />
+  <Access Scope="LiteralConstant" UId="101">
+    <Constant UId="102">
+      <ConstantValue UId="104">1</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="105" />
+  <NewLine Num="1" UId="106" />
+  <Token Text="ELSE" UId="107" />
+  <NewLine Num="1" UId="108" />
+  <Blank Num="4" UId="109" />
+  <Access Scope="LocalVariable" UId="110">
+    <Symbol UId="111">
+      <Component Name="interlocks" UId="112" />
+    </Symbol>
+  </Access>
+  <Blank Num="1" UId="113" />
+  <Token Text=":=" UId="114" />
+  <Blank Num="1" UId="115" />
+  <Access Scope="LiteralConstant" UId="116">
+    <Constant UId="117">
+      <ConstantValue UId="119">0</ConstantValue>
+    </Constant>
+  </Access>
+  <Token Text=";" UId="120" />
+  <NewLine Num="1" UId="121" />
+  <Token Text="END_IF" UId="122" />
+  <Token Text=";" UId="123" />
+  <NewLine Num="1" UId="124" />
+</StructuredText></NetworkSource>
+          <ProgrammingLanguage>SCL</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="4" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="5" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="6" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="7" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <MultilingualText ID="8" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="9" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Blocks.FC>
+</Document>

@@ -41,10 +41,10 @@
     </Member>
   </Section>
 </Sections></Interface>
-      <MemoryLayout>Standard</MemoryLayout>
+      <MemoryLayout>Optimized</MemoryLayout>
       <Name>IEC_Timer_0_DB_7</Name>
       <Namespace />
-      <Number>26</Number>
+      <Number>24</Number>
       <OfSystemLibElement>IEC_TIMER</OfSystemLibElement>
       <OfSystemLibVersion>1.0</OfSystemLibVersion>
       <ProgrammingLanguage>DB</ProgrammingLanguage>

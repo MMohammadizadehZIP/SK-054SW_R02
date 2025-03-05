@@ -42,9 +42,9 @@
   </Section>
 </Sections></Interface>
       <MemoryLayout>Optimized</MemoryLayout>
-      <Name>IEC_Timer_0_DB_6</Name>
+      <Name>IEC_Timer_0_DB_22</Name>
       <Namespace />
-      <Number>14</Number>
+      <Number>43</Number>
       <OfSystemLibElement>IEC_TIMER</OfSystemLibElement>
       <OfSystemLibVersion>1.0</OfSystemLibVersion>
       <ProgrammingLanguage>DB</ProgrammingLanguage>

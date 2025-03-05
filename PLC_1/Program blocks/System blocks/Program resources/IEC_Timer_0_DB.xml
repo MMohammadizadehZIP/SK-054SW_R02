@@ -44,7 +44,7 @@
       <MemoryLayout>Optimized</MemoryLayout>
       <Name>IEC_Timer_0_DB</Name>
       <Namespace />
-      <Number>12</Number>
+      <Number>7</Number>
       <OfSystemLibElement>IEC_TIMER</OfSystemLibElement>
       <OfSystemLibVersion>1.0</OfSystemLibVersion>
       <ProgrammingLanguage>DB</ProgrammingLanguage>
